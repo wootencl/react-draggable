@@ -15,7 +15,8 @@ declare module 'react-draggable' {
     defaultClassNameDragging: string,
     defaultClassNameDragged: string,
     defaultPosition: ControlPosition,
-    position: ControlPosition
+    position: ControlPosition,
+    scale: number
   }
 
   export type DraggableEventHandler = (e: MouseEvent, data: DraggableData) => void | false;

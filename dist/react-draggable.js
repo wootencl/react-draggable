@@ -7,7 +7,7 @@
 		exports["ReactDraggable"] = factory(require("react-dom"), require("react"));
 	else
 		root["ReactDraggable"] = factory(root["ReactDOM"], root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -707,12 +707,13 @@ function createCoreData(draggable /*: DraggableCore*/, x /*: number*/, y /*: num
 
 // Create an data exposed by <Draggable>'s events
 function createDraggableData(draggable /*: Draggable*/, coreData /*: DraggableData*/) /*: DraggableData*/ {
+  var scale = draggable.props.scale;
   return {
     node: coreData.node,
-    x: draggable.state.x + coreData.deltaX,
-    y: draggable.state.y + coreData.deltaY,
-    deltaX: coreData.deltaX,
-    deltaY: coreData.deltaY,
+    x: draggable.state.x + coreData.deltaX / scale,
+    y: draggable.state.y + coreData.deltaY / scale,
+    deltaX: coreData.deltaX / scale,
+    deltaY: coreData.deltaY / scale,
     lastX: draggable.state.x,
     lastY: draggable.state.y
   };
@@ -1113,6 +1114,12 @@ DraggableCore.propTypes = {
    * `grid` specifies the x and y that dragging should snap to.
    */
   grid: _propTypes2.default.arrayOf(_propTypes2.default.number),
+
+  /**
+   * `scale` specifies the scale of the area you are dragging inside of. It allows
+   * the drag deltas to scale correctly with how far zoomed in/out you are.
+   */
+  scale: _propTypes2.default.number,
 
   /**
    * `handle` specifies a selector to be used as the handle that initiates drag.
@@ -1652,7 +1659,8 @@ Draggable.defaultProps = _extends({}, _DraggableCore2.default.defaultProps, {
   defaultClassNameDragging: 'react-draggable-dragging',
   defaultClassNameDragged: 'react-draggable-dragged',
   defaultPosition: { x: 0, y: 0 },
-  position: null
+  position: null,
+  scale: 1
 });
 exports.default = Draggable;
 
@@ -2478,9 +2486,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		module.exports = classNames;
 	} else if (true) {
 		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {
 		window.classNames = classNames;

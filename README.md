@@ -313,3 +313,7 @@ Drag callbacks (`onStart`, `onDrag`, `onStop`) are called with the [same argumen
 ### License
 
 MIT
+
+## Publish as npm package
+
+Publish is done on every push to master by this Jenkins job: `Npm-publish-react-draggable`.

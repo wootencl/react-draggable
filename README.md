@@ -97,8 +97,6 @@ class App extends React.Element {
         defaultPosition={{x: 0, y: 0}}
         position={null}
         grid={[25, 25]}
-        zIndex={100}
-        zIndex={100}
         scale={1}
         onStart={this.handleStart}
         onDrag={this.handleDrag}
